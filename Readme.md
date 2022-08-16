@@ -1,7 +1,7 @@
 # Patika.dev & EnUygun Test Automation Bootcamp
 
-<br /> <center><span style="font-family: Open Sans; font-weight: 600; font-size: 22px;font-style: italic">Every good thing has an end !</span>
-<br /> <span style="font-family: Open Sans; font-weight: 600; font-size: 22px;font-style: italic">Every end is a new beginning !</span></center>
+<br /> <div align="center"><span style="font-family: Open Sans; font-weight: 600; font-size: 22px;font-style: italic">Every good thing has an end !</span>
+<br /> <span style="font-family: Open Sans; font-weight: 600; font-size: 22px;font-style: italic">Every end is a new beginning !</span></center></div>
 
 ## Case Studies
 

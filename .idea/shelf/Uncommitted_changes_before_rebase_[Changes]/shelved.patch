@@ -1,0 +1,341 @@
+Index: Readme.md
+===================================================================
+diff --git a/Readme.md b/Readme.md
+deleted file mode 100644
+--- a/Readme.md	(revision 5f1a306face99447c56fea9416e4cff3204677c3)
++++ /dev/null	(revision 5f1a306face99447c56fea9416e4cff3204677c3)
+@@ -1,26 +0,0 @@
+-# Patika.dev & EnUygun Test Automation Bootcamp
+-
+-<br /> <center><span style="font-family: Open Sans; font-weight: 600; font-size: 22px;font-style: italic">Every good thing has an end !</span>
+-<br /> <span style="font-family: Open Sans; font-weight: 600; font-size: 22px;font-style: italic">Every end is a new beginning !</span></center>
+-
+-## Case Studies
+-
+-<span style="font-size: 18px"> 
+-<br> 1️⃣ EnUygun Internet Sitesi Üzerinde Web Otomasyou 
+-<br> 2️⃣ Grocery Store API 
+-<br> 3️⃣ Petstore 
+-<br> 4️⃣ Mobil Appium 
+-</span>
+-
+-## Acknowledgements
+-
+-<span style="font-size: 16px">
+-<br /> 👨‍🏫 Hasan Hocamıza hem eğitim boyunca anlattıkları hem de tecrübelerini aktardığı için
+-<br /> 👨🏼‍🎓👩🏼‍🎓 Eğitimde sırasındaki değerli ekip arkadaşlarıma
+-<br /> 💪🏼    Her hafta bizle birlikte olan asistanlara
+-<br /> 📚    Patika.dev Ekibi
+-<br /> 🎫    EnUygun
+-</span>
+-
+-## License
+-[MIT](https://choosealicense.com/licenses/mit/)
+\ No newline at end of file
+Index: petStore/petCase/readme.md
+===================================================================
+diff --git a/petStore/petCase/readme.md b/petStore/petCase/readme.md
+deleted file mode 100644
+--- a/petStore/petCase/readme.md	(revision 5f1a306face99447c56fea9416e4cff3204677c3)
++++ /dev/null	(revision 5f1a306face99447c56fea9416e4cff3204677c3)
+@@ -1,15 +0,0 @@
+-# Pet Store Case Information
+-
+-
+-
+-<br /> <span style="font-weight: 600; font-size: 18px; font-style: normal">https://petstore.swagger.io/</span> 
+-<span style="font-size: 16px">servisini kullanarak;</span>
+-<br>
+-<span style="font-size: 14px">
+-<br> 1️⃣ /pet/findByStatus servisinin available, pending, sold parametresi ile testini yazın.
+-<br> 2️⃣ /pet/findByStatus responsundan dönen pet'lerin üçüncüsünün İdsi /pet/{petId} get servisine
+-pet id parametresinde göndererek testini yazın.
+-<br> 3️⃣ /pet/{petId} post, delete testlerini yazın.<br>
+-<br> 📝 Testler de verification lar açıkça belirtilmemiştir, verification ları olabildiğince
+-çeşitlendirin.
+-</span>
+\ No newline at end of file
+Index: petStore/petCase/src/test/java/petPostDelete.java
+===================================================================
+diff --git a/petStore/petCase/src/test/java/petPostDelete.java b/petStore/petCase/src/test/java/petPostDelete.java
+deleted file mode 100644
+--- a/petStore/petCase/src/test/java/petPostDelete.java	(revision 5f1a306face99447c56fea9416e4cff3204677c3)
++++ /dev/null	(revision 5f1a306face99447c56fea9416e4cff3204677c3)
+@@ -1,68 +0,0 @@
+-import io.restassured.http.ContentType;
+-import io.restassured.response.Response;
+-
+-import org.apache.http.HttpStatus;
+-import org.json.simple.JSONObject;
+-import org.testng.annotations.Test;
+-
+-import java.util.HashMap;
+-import java.util.Map;
+-
+-import static io.restassured.RestAssured.given;
+-import static org.testng.Assert.assertEquals;
+-
+-public class petPostDelete {
+-
+-    Response response;
+-    JSONObject jsonObject;
+-    Map<String, Object> map = new HashMap<String, Object>();
+-
+-    Long postedPetId;
+-
+-    @Test(priority = 0)
+-    public void postTheNewPet() {
+-
+-        this.map.put("petId", 35);
+-        this.map.put("name", "PetForTest");
+-        this.map.put("status", "available");
+-
+-        response = given()
+-                .accept(ContentType.JSON)
+-                .header("Content-Type","application/json")
+-                .header("Connection","keep-alive")
+-                .body(jsonObject.toJSONString(map))
+-                .when()
+-                .post("https://petstore.swagger.io/v2/pet");
+-
+-        response
+-                .then()
+-                .log()
+-                .all()
+-                .statusCode(200)
+-                .assertThat()
+-                .extract()
+-                .path("id");
+-
+-        assertEquals(HttpStatus.SC_OK, response.getStatusCode());
+-        this.postedPetId = response.path("id");
+-        System.out.println("Test Res1: " + this.postedPetId);
+-    }
+-
+-    @Test(priority = 1)
+-    public void deleteThePostedPet(){
+-        System.out.println("singleDeleteTest Res1: " + this.postedPetId);
+-
+-        response = given()
+-                .accept(ContentType.JSON)
+-                .header("Content-Type","application/json")
+-                .header("Connection","keep-alive")
+-                .delete("https://petstore.swagger.io/v2/pet/" + this.postedPetId);
+-
+-
+-        assertEquals(HttpStatus.SC_OK,response.getStatusCode());
+-        System.out.println(response.getStatusCode());
+-        System.out.println(HttpStatus.SC_NOT_FOUND);
+-    }
+-
+-
+-}
+Index: petStore/petCase/src/test/java/petStatus.java
+===================================================================
+diff --git a/petStore/petCase/src/test/java/petStatus.java b/petStore/petCase/src/test/java/petStatus.java
+deleted file mode 100644
+--- a/petStore/petCase/src/test/java/petStatus.java	(revision 5f1a306face99447c56fea9416e4cff3204677c3)
++++ /dev/null	(revision 5f1a306face99447c56fea9416e4cff3204677c3)
+@@ -1,43 +0,0 @@
+-import org.testng.annotations.Test;
+-
+-import static io.restassured.RestAssured.given;
+-import static org.hamcrest.Matchers.equalTo;
+-
+-
+-public class petStatus {
+-
+-    String mainURL = "https://petstore.swagger.io/v2/pet/findByStatus?status=";
+-
+-    @Test(priority = 0)
+-    public void availablePetsCheck() {
+-        given()
+-                .get(mainURL + statusType.available)
+-                .then()
+-                .statusCode(200)
+-                .log().all()
+-                .body("status[0]", equalTo("available"));
+-
+-    }
+-
+-    @Test(priority = 1, enabled = false)
+-    public void pendingPetsCheck() {
+-        given()
+-                .get(mainURL + statusType.pending)
+-                .then()
+-                .statusCode(200)
+-                .log().all()
+-                .body("status[0]", equalTo("pending"));
+-
+-    }
+-
+-    @Test(priority = 2, enabled = false)
+-    public void soldPetsCheck() {
+-        given()
+-                .get(mainURL + statusType.sold)
+-                .then()
+-                .statusCode(200)
+-                .log().all()
+-                .body("status[0]", equalTo("sold"));
+-
+-    }
+-}
+Index: petStore/petCase/pom.xml
+===================================================================
+diff --git a/petStore/petCase/pom.xml b/petStore/petCase/pom.xml
+deleted file mode 100644
+--- a/petStore/petCase/pom.xml	(revision 5f1a306face99447c56fea9416e4cff3204677c3)
++++ /dev/null	(revision 5f1a306face99447c56fea9416e4cff3204677c3)
+@@ -1,40 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project xmlns="http://maven.apache.org/POM/4.0.0"
+-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+-    <modelVersion>4.0.0</modelVersion>
+-
+-    <groupId>org.example</groupId>
+-    <artifactId>petCase</artifactId>
+-    <version>1.0-SNAPSHOT</version>
+-
+-    <dependencies>
+-
+-        <!-- TestNG Dependency -->
+-        <dependency>
+-            <groupId>org.testng</groupId>
+-            <artifactId>testng</artifactId>
+-            <version>7.6.1</version>
+-            <scope>test</scope>
+-        </dependency>
+-
+-        <!-- Rest Assured Dependency -->
+-        <dependency>
+-            <groupId>io.rest-assured</groupId>
+-            <artifactId>rest-assured</artifactId>
+-            <version>5.1.1</version>
+-        </dependency>
+-
+-        <!-- Google Json Dependency -->
+-        <dependency>
+-            <groupId>com.googlecode.json-simple</groupId>
+-            <artifactId>json-simple</artifactId>
+-            <version>1.1.1</version>
+-        </dependency>
+-
+-
+-
+-    </dependencies>
+-
+-
+-</project>
+\ No newline at end of file
+Index: petStore/petCase/src/test/java/petIDThird.java
+===================================================================
+diff --git a/petStore/petCase/src/test/java/petIDThird.java b/petStore/petCase/src/test/java/petIDThird.java
+deleted file mode 100644
+--- a/petStore/petCase/src/test/java/petIDThird.java	(revision 5f1a306face99447c56fea9416e4cff3204677c3)
++++ /dev/null	(revision 5f1a306face99447c56fea9416e4cff3204677c3)
+@@ -1,34 +0,0 @@
+-import org.apache.http.HttpStatus;
+-import org.testng.annotations.Test;
+-
+-import java.util.ArrayList;
+-
+-import static io.restassured.RestAssured.given;
+-import static org.hamcrest.Matchers.equalTo;
+-
+-public class petIDThird {
+-    @Test
+-    public void thirdPetCheck() {
+-        ArrayList<Long> petID = given()
+-                .get("https://petstore.swagger.io/v2/pet/findByStatus?status=available")
+-                .then()
+-                .statusCode(HttpStatus.SC_OK)
+-                .assertThat()
+-                .extract()
+-                .path("id");
+-
+-        System.out.println(petID);
+-        System.out.println("3rd Pet's ID: " + petID.get(2));
+-
+-        Long petID3 = petID.get(2);
+-        System.out.println("3rd Pet's ID: " + petID3);
+-
+-
+-        given()
+-                .get("https://petstore.swagger.io/v2/pet/" + petID3)
+-                .then()
+-                .statusCode(200)
+-                .log().all()
+-                .body("status", equalTo("available"));
+-    }
+-}
+Index: petStore/petCase/src/test/java/statusType.java
+===================================================================
+diff --git a/petStore/petCase/src/test/java/statusType.java b/petStore/petCase/src/test/java/statusType.java
+deleted file mode 100644
+--- a/petStore/petCase/src/test/java/statusType.java	(revision 5f1a306face99447c56fea9416e4cff3204677c3)
++++ /dev/null	(revision 5f1a306face99447c56fea9416e4cff3204677c3)
+@@ -1,5 +0,0 @@
+-public enum statusType {
+-    available,
+-    pending,
+-    sold
+-}
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"e44ef604-e506-4bd1-ab0f-bd491847abb9\" name=\"Changes\" comment=\"Some unversioned files were added to avoid future error\">\r\n      <change afterPath=\"$PROJECT_DIR$/petStore/petCase/pom.xml\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"petStore_Studies\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n    <option name=\"UPDATE_TYPE\" value=\"REBASE\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2DRFr5pEq9ippbjL23cMcWDChYi\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"WebServerToolWindowFactoryState\": \"false\",\r\n    \"jdk.selected.JAVA_MODULE\": \"11\",\r\n    \"last_opened_file_path\": \"C:/Users/ekrem/Desktop/TestAutomation_Bootcamp/Projects/enUygunTestCaseStudy/petStore\",\r\n    \"nodejs_package_manager_path\": \"npm\"\r\n  }\r\n}]]></component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"e44ef604-e506-4bd1-ab0f-bd491847abb9\" name=\"Changes\" comment=\"Some unversioned files were added to avoid future error\" />\r\n      <created>1660654185654</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1660654185654</updated>\r\n      <workItem from=\"1660654187120\" duration=\"141000\" />\r\n      <workItem from=\"1660654341491\" duration=\"683000\" />\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 5f1a306face99447c56fea9416e4cff3204677c3)
++++ b/.idea/workspace.xml	(date 1660656011287)
+@@ -4,8 +4,9 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="e44ef604-e506-4bd1-ab0f-bd491847abb9" name="Changes" comment="Some unversioned files were added to avoid future error">
+-      <change afterPath="$PROJECT_DIR$/petStore/petCase/pom.xml" afterDir="false" />
++    <list default="true" id="e44ef604-e506-4bd1-ab0f-bd491847abb9" name="Changes" comment="First Study Of Pet Store Added to Branch">
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/Readme.md" beforeDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -19,7 +20,6 @@
+       </map>
+     </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+-    <option name="UPDATE_TYPE" value="REBASE" />
+   </component>
+   <component name="MarkdownSettingsMigration">
+     <option name="stateVersion" value="1" />
+@@ -48,8 +48,16 @@
+       <option name="presentableId" value="Default" />
+       <updated>1660654185654</updated>
+       <workItem from="1660654187120" duration="141000" />
+-      <workItem from="1660654341491" duration="683000" />
++      <workItem from="1660654341491" duration="1657000" />
++    </task>
++    <task id="LOCAL-00001" summary="First Study Of Pet Store Added to Branch">
++      <created>1660655310488</created>
++      <option name="number" value="00001" />
++      <option name="presentableId" value="LOCAL-00001" />
++      <option name="project" value="LOCAL" />
++      <updated>1660655310488</updated>
+     </task>
++    <option name="localTasksCounter" value="2" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -66,4 +74,8 @@
+       </map>
+     </option>
+   </component>
++  <component name="VcsManagerConfiguration">
++    <MESSAGE value="First Study Of Pet Store Added to Branch" />
++    <option name="LAST_COMMIT_MESSAGE" value="First Study Of Pet Store Added to Branch" />
++  </component>
+ </project>
+\ No newline at end of file

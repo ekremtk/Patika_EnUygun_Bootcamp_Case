@@ -2,14 +2,17 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="petCase" />
+        <module name="appiumCase" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="patikaAppiumTrialTests" target="11" />
+      <module name="petCase" target="1.5" />
       <module name="petStoreCase" target="1.5" />
     </bytecodeTargetLevel>
   </component>

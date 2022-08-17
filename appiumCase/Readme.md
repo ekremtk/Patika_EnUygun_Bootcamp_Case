@@ -20,8 +20,8 @@ otomatize ediniz;</span>
 🔴 **Kullanıcı Kayıt Sayfası**\
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ◼ Bütün Alanların Görünürlüğünün Kontrol Edilmesi \
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ◼ Alanlarda Bulunan Textlerin Alınması ve Kontrol Edilmesi \
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ◼ Random Bir Sayı İle Birlikte Email ve Şifre Oluşturulup Kullanıcı Kayıt Edilmesi
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ◼ Kayıt Edilen Kullanıcı İle Giriş Yapılması\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ◼ Random Bir Sayı İle Birlikte Email ve Şifre Oluşturulup Kullanıcı Kayıt Edilmesi\
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ◼ Kayıt Edilen Kullanıcı İle Giriş Yapılması
 
 ---
 

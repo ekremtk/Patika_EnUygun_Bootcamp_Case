@@ -5,14 +5,10 @@
 
 ## Case Studies
 
-<span style="font-size: 18px"> 
-<br> 1️⃣ EnUygun Internet Sitesi Üzerinde Web Otomasyou 
-<br> 2️⃣ Grocery Store API 
-<br> 3️⃣ Petstore 
-<br> 4️⃣ Mobil Appium 
-</span>
-
-[Appium](appiumCase)
+<br /> 1️⃣ EnUygun Internet Sitesi Üzerinde Web Otomasyou [EnUygun](enUygunWebPageCase)
+<br /> 2️⃣ Grocery Store API [Grocery Store](groceryStoreCase)
+<br /> 3️⃣ Petstore [Pet Store](petCase)
+<br /> 4️⃣ Mobil Appium [Appium](appiumCase)
 
 ## Acknowledgements
 

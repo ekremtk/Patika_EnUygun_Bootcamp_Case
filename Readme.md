@@ -12,6 +12,8 @@
 <br> 4️⃣ Mobil Appium 
 </span>
 
+[Appium](appiumCase)
+
 ## Acknowledgements
 
 <span style="font-size: 16px">
